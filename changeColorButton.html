@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        transition: background-color 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="changeColorButton">Сhange Background Color</button>
+    <script>
+      const button = document.getElementById("changeColorButton");
+      const body = document.body;
+
+      const generateRandomColor = () => {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+
+      const colors = [];
+      for (let i = 0; i < 500; i++) {
+        colors.push(generateRandomColor());
+      }
+
+      button.addEventListener("click", changeBackgroundColor);
+
+      function changeBackgroundColor() {
+        const randomIndex1 = Math.floor(Math.random() * colors.length);
+        const randomColor1 = colors[randomIndex1];
+        const randomIndex2 = Math.floor(Math.random() * colors.length);
+        const randomColor2 = colors[randomIndex2];
+        body.style.backgroundColor = randomColor1;
+        button.style.backgroundColor = randomColor2;
+      }
+    </script>
+  </body>
+</html>
